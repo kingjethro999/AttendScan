@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { Card } from "@/components/ui/Card";
@@ -9,7 +9,7 @@ import { Loader2, QrCode, CheckCircle, XCircle } from "lucide-react";
 import { logger } from "@/lib/utils";
 import { toast } from "sonner";
 
-export default function AttendPage() {
+function AttendContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -59,7 +59,6 @@ export default function AttendPage() {
 
   useEffect(() => {
     if (status === "unauthenticated") {
-      // Redirect to login but keep the token so we can return here
       const returnUrl = encodeURIComponent(`/attend?token=${token}`);
       router.push(`/login?callbackUrl=${returnUrl}`);
     }
@@ -67,32 +66,32 @@ export default function AttendPage() {
 
   if (status === "loading" || (status === "authenticated" && !status_msg && !isLoading)) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center bg-[var(--surface-900)]">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-10 w-10 animate-spin text-primary" />
-          <p className="text-muted-foreground font-medium">Preparing attendance...</p>
+          <Loader2 className="h-10 w-10 animate-spin text-red-500" />
+          <p className="text-[var(--text-secondary)] font-medium">Preparing attendance...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-brand-50/50 to-background dark:from-brand-950/20 p-4">
-      <Card className="w-full max-w-md p-8 text-center animate-in zoom-in-95 duration-300">
+    <div className="min-h-screen flex items-center justify-center bg-[var(--surface-900)] p-4">
+      <Card className="w-full max-w-md p-8 text-center bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px]">
         {!status_msg ? (
           <div className="space-y-6">
-            <div className="bg-primary/10 p-4 rounded-3xl w-fit mx-auto text-primary">
+            <div className="bg-red-500/10 p-4 rounded-3xl w-fit mx-auto text-red-500">
               <QrCode size={48} />
             </div>
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold tracking-tight">Confirm Attendance</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-2xl font-bold text-white tracking-tight">Confirm Attendance</h1>
+              <p className="text-[var(--text-secondary)]">
                 You are about to mark your attendance for a lecture session.
               </p>
             </div>
             <Button 
               onClick={handleAttend} 
-              className="w-full h-14 text-lg rounded-2xl" 
+              className="w-full h-14 text-lg rounded-xl bg-red-500 hover:bg-red-600" 
               isLoading={isLoading}
             >
               Mark as Present
@@ -100,16 +99,16 @@ export default function AttendPage() {
           </div>
         ) : (
           <div className="space-y-6">
-            <div className={`p-4 rounded-full w-fit mx-auto ${status_msg.success ? "bg-emerald-100 text-emerald-600" : "bg-destructive/10 text-destructive"}`}>
+            <div className={`p-4 rounded-full w-fit mx-auto ${status_msg.success ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"}`}>
               {status_msg.success ? <CheckCircle size={48} /> : <XCircle size={48} />}
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold">{status_msg.success ? "Success!" : "Failed"}</h2>
-              <p className={`text-lg font-medium ${status_msg.success ? "text-emerald-700 dark:text-emerald-400" : "text-destructive"}`}>
+              <h2 className="text-2xl font-bold text-white">{status_msg.success ? "Success!" : "Failed"}</h2>
+              <p className={`text-lg font-medium ${status_msg.success ? "text-green-500" : "text-red-500"}`}>
                 {status_msg.message}
               </p>
               {status_msg.courseName && (
-                <p className="font-bold text-xl mt-2">{status_msg.courseName}</p>
+                <p className="font-bold text-xl mt-2 text-white">{status_msg.courseName}</p>
               )}
             </div>
             <Button asChild variant="outline" className="w-full rounded-xl">
@@ -119,5 +118,17 @@ export default function AttendPage() {
         )}
       </Card>
     </div>
+  );
+}
+
+export default function AttendPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-[var(--surface-900)]">
+        <Loader2 className="h-10 w-10 animate-spin text-red-500" />
+      </div>
+    }>
+      <AttendContent />
+    </Suspense>
   );
 }
