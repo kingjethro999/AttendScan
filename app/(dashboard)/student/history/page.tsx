@@ -106,7 +106,7 @@ export default async function StudentHistoryPage() {
           <p className="text-muted-foreground max-w-sm mt-2">
             Start by scanning a QR code in your next lecture to see your history here.
           </p>
-          <a href="/student/scan" className="mt-8 inline-flex items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white hover:bg-primary/90 transition-all shadow-lg shadow-primary/20">
+          <a href="/student/scan" className="mt-8 inline-flex items-center justify-center rounded-xl bg-red-500 px-8 py-3 text-sm font-bold text-[var(--text-primary)] hover:bg-red-600 transition-all shadow-lg shadow-red-500/20">
             Go to Scanner
           </a>
         </Card>

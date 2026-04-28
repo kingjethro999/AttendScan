@@ -35,8 +35,6 @@ export function LoginForm() {
       } else {
         toast.success("Welcome back!");
         router.refresh();
-        // Get role from the form data and redirect based on it
-        // Since we can't easily get session here, we'll redirect to home which will check auth
         router.push("/");
       }
     } catch (error) {
@@ -48,10 +46,10 @@ export function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-8">
+    <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-[var(--bg-card)] border border-[var(--border)] rounded-[24px] p-8">
       <div className="space-y-6">
         <div>
-          <h2 className="text-2xl font-black text-white">Sign In</h2>
+          <h2 className="text-2xl font-black text-[var(--text-primary)]">Sign In</h2>
           <p className="text-[var(--text-secondary)] text-sm mt-1">Enter your credentials to access your account</p>
         </div>
         <div className="space-y-4">

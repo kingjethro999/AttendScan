@@ -16,7 +16,12 @@ export function MetricCard({ label, value, icon: Icon, description, className }:
       <div className="flex items-start justify-between">
         <div className="space-y-2">
           <p className="text-[10px] font-black uppercase tracking-widest text-[var(--text-muted)]">{label}</p>
-          <p className="text-3xl font-black text-white tracking-tight mono-figure">{value}</p>
+          <p 
+            className="text-3xl font-black tracking-tight mono-figure"
+            style={{ color: 'var(--text-primary)' }}
+          >
+            {value}
+          </p>
           {description && (
             <p className="text-xs text-[var(--text-secondary)]">{description}</p>
           )}

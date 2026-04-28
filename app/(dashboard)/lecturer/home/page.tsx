@@ -31,7 +31,7 @@ export default async function LecturerHomePage() {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-white mb-1 tracking-tight">Welcome back, {userName}</h1>
+          <h1 className="text-3xl font-black text-[var(--text-primary)] mb-1 tracking-tight">Welcome back, {userName}</h1>
           <p className="text-[var(--text-secondary)] font-medium">Here's an overview of your activity.</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-xl">
@@ -71,10 +71,10 @@ export default async function LecturerHomePage() {
         <div className="bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-8 relative overflow-hidden balance-card card-lift">
           <div className="relative z-10 flex flex-col justify-between h-full space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold text-white">Manage Courses</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Manage Courses</h2>
               <p className="text-[var(--text-secondary)]">Review attendance and generate new QR codes for your sessions.</p>
             </div>
-            <a href="/lecturer/courses" className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold bg-red-500 hover:bg-red-600 text-white rounded-xl transition-all hover:scale-105 shadow-lg shadow-red-500/20">
+            <a href="/lecturer/courses" className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold bg-red-500 hover:bg-red-600 text-[var(--text-primary)] rounded-xl transition-all hover:scale-105 shadow-lg shadow-red-500/20">
                View My Courses
             </a>
           </div>
@@ -86,10 +86,10 @@ export default async function LecturerHomePage() {
         <div className="bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-8 relative overflow-hidden card-lift">
           <div className="relative z-10 flex flex-col justify-between h-full space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold text-white">Attendance History</h2>
-              <p className="text-[var(--text-secondary)]">Access detailed logs and export attendance reports.</p>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">Attendance History</h2>
+              <p className="text-[var(--text-primary)]">Access detailed logs and export attendance reports.</p>
             </div>
-            <a href="/lecturer/history" className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold bg-[var(--surface-700)] hover:bg-[var(--surface-600)] text-white rounded-xl transition-all border border-white/5">
+            <a href="/lecturer/history" className="inline-flex items-center justify-center px-6 py-3 text-sm font-bold bg-[var(--surface-700)] hover:bg-[var(--surface-600)] text-[var(--text-primary)] rounded-xl transition-all border border-white/5">
                Check History
             </a>
           </div>

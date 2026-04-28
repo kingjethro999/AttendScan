@@ -59,14 +59,14 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header>
-        <h1 className="text-3xl font-black text-white mb-1 tracking-tight">Settings</h1>
+        <h1 className="text-3xl font-black text-[var(--text-primary)] mb-1 tracking-tight">Settings</h1>
         <p className="text-[var(--text-secondary)]">Manage your account details</p>
       </header>
 
       <div className="grid gap-6">
         {/* Profile Info */}
         <div className="bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-6">
-          <h2 className="text-lg font-bold text-white mb-4">Profile Information</h2>
+          <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">Profile Information</h2>
           <form action={updateProfile} className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <Input
@@ -97,7 +97,7 @@ export default async function SettingsPage() {
 
         {/* Change Password */}
         <div className="bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-6">
-          <h2 className="text-lg font-bold text-white mb-4">Change Password</h2>
+          <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">Change Password</h2>
           <form action={changePassword} className="space-y-4">
             <Input
               label="New Password"

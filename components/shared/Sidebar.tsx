@@ -50,9 +50,9 @@ export function Sidebar({ role, user }: SidebarProps) {
   const items = role === "LECTURER" ? lecturerItems : studentItems;
 
   return (
-    <aside className="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-[var(--surface-800)] border-r border-[var(--surface-600)] flex-col z-50">
+    <aside className="hidden lg:flex fixed left-0 top-0 h-full w-64 bg-[var(--bg-card)] border-r border-[var(--border)] flex-col z-50">
       <div className="flex items-center gap-3 px-6 py-8">
-        <h1 className="text-white text-lg font-black tracking-tighter">ATTENDSCAN</h1>
+        <h1 className="text-[var(--text-primary)] text-lg font-black tracking-tighter">ATTENDSCAN</h1>
       </div>
 
       <nav className="flex-1 px-4 space-y-1 overflow-y-auto scrollbar-thin">
@@ -65,8 +65,8 @@ export function Sidebar({ role, user }: SidebarProps) {
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-all duration-200",
                 isActive 
-                  ? "sidebar-item-active shadow-lg shadow-black/10" 
-                  : "text-[var(--text-secondary)] hover:bg-[var(--surface-700)] hover:text-white"
+                  ? "sidebar-item-active shadow-lg shadow-black/5" 
+                  : "text-[var(--text-secondary)] hover:bg-[var(--border)] hover:text-[var(--text-primary)]"
               )}
             >
               <span className={isActive ? "text-[var(--red-500)]" : "text-[var(--text-muted)]"}>
@@ -78,10 +78,10 @@ export function Sidebar({ role, user }: SidebarProps) {
         })}
       </nav>
 
-      <div className="p-4 border-t border-[var(--surface-600)]">
-        <div className="mb-3 flex flex-col items-center justify-center py-3 px-3 rounded-xl border border-white/5 bg-black/20 text-center font-bold tracking-tight">
+      <div className="p-4 border-t border-[var(--border)]">
+        <div className="mb-3 flex flex-col items-center justify-center py-3 px-3 rounded-xl border border-[var(--border)] bg-[var(--bg-primary)] text-center font-bold tracking-tight">
           <p className="text-[10px] text-[var(--text-muted)] uppercase tracking-widest mb-1">{role === 'LECTURER' ? 'Lecturer' : 'Student'}</p>
-          <span className="text-xs text-white">{user.firstName} {user.lastName}</span>
+          <span className="text-xs text-[var(--text-primary)]">{user.firstName} {user.lastName}</span>
         </div>
         <button 
           onClick={() => signOut()} 

@@ -14,11 +14,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", isLoading, asChild = false, children, disabled, ...props }, ref) => {
     const Comp = asChild ? Slot : "button";
     const variants = {
-      primary: "bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-red-500/20 active:scale-95",
-      secondary: "bg-[var(--surface-700)] text-white hover:bg-[var(--surface-600)] active:scale-95",
-      outline: "border border-[var(--surface-600)] bg-transparent hover:bg-[var(--surface-700)] text-white active:scale-95",
-      ghost: "hover:bg-[var(--surface-700)] text-[var(--text-secondary)] hover:text-white active:scale-95",
-      destructive: "bg-red-600 hover:bg-red-700 text-white active:scale-95",
+      primary: "bg-red-500 hover:bg-red-600 text-[var(--text-primary)] shadow-lg hover:shadow-red-500/20 active:scale-95",
+      secondary: "bg-[var(--gray-200)] text-[var(--gray-800)] hover:bg-[var(--gray-300)] active:scale-95",
+      outline: "border border-[var(--border)] bg-transparent hover:bg-[var(--gray-100)] text-[var(--text-primary)] active:scale-95",
+      ghost: "hover:bg-[var(--gray-100)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] active:scale-95",
+      destructive: "bg-red-600 hover:bg-red-700 text-[var(--text-primary)] active:scale-95",
     };
 
     const sizes = {

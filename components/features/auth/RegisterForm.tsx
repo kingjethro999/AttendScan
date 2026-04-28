@@ -55,10 +55,10 @@ export function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto bg-[var(--surface-800)] border border-[var(--surface-600)] rounded-[24px] p-8">
+    <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto bg-[var(--bg-card)] border border-[var(--border)] rounded-[24px] p-8">
       <div className="space-y-6">
         <div>
-          <h2 className="text-2xl font-black text-white">Create Account</h2>
+          <h2 className="text-2xl font-black text-[var(--text-primary)]">Create Account</h2>
           <p className="text-[var(--text-secondary)] text-sm mt-1">Join AttendScan to manage attendance</p>
         </div>
         
@@ -70,7 +70,7 @@ export function RegisterForm() {
               "flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all gap-2",
               role === "STUDENT" 
                 ? "border-red-500 bg-red-500/10 text-red-500 shadow-sm" 
-                : "border-[var(--surface-600)] hover:border-red-500/50 text-[var(--text-secondary)]"
+                : "border-[var(--border)] hover:border-red-500/50 text-[var(--text-secondary)]"
             )}
           >
             <GraduationCap size={24} />
@@ -83,7 +83,7 @@ export function RegisterForm() {
               "flex flex-col items-center justify-center p-4 rounded-xl border-2 transition-all gap-2",
               role === "LECTURER" 
                 ? "border-red-500 bg-red-500/10 text-red-500 shadow-sm" 
-                : "border-[var(--surface-600)] hover:border-red-500/50 text-[var(--text-secondary)]"
+                : "border-[var(--border)] hover:border-red-500/50 text-[var(--text-secondary)]"
             )}
           >
             <User size={24} />

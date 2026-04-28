@@ -9,12 +9,11 @@ import {
   Timer, 
   AlertTriangle, 
   CheckCircle, 
-  RefreshCw,
-  Loader2
+  RefreshCw
 } from "lucide-react";
 import { logger, cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { differenceInSeconds, format } from "date-fns";
+import { differenceInSeconds } from "date-fns";
 
 interface QRGeneratorModalProps {
   courseId: string;
@@ -88,12 +87,12 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
   const qrUrl = session ? `${window.location.origin}/attend?token=${session.token}` : "";
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <Card className="w-full max-w-2xl relative shadow-2xl border-primary/20 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+      <Card className="w-full max-w-2xl relative shadow-2xl bg-[var(--surface-800)] border border-[var(--surface-600)] overflow-hidden rounded-[24px]">
         <Button 
           variant="ghost" 
           size="icon" 
-          className="absolute right-4 top-4 rounded-full" 
+          className="absolute right-4 top-4 rounded-full z-10" 
           onClick={() => {
             if (session && !isExpired) {
               if (confirm("Are you sure? Active students may not finish scanning.")) {
@@ -104,15 +103,15 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
             }
           }}
         >
-          <X size={20} />
+          <X size={20} className="text-[var(--text-primary)]" />
         </Button>
 
         <CardContent className="p-8 md:p-12">
           {!session ? (
             <div className="space-y-6 text-center">
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">Generate QR Code</h2>
-                <p className="text-muted-foreground">Select session duration for {courseName}</p>
+                <h2 className="text-3xl font-black text-[var(--text-primary)] tracking-tight">Generate QR Code</h2>
+                <p className="text-[var(--text-secondary)]">Select session duration for {courseName}</p>
               </div>
               
               <div className="flex flex-wrap justify-center gap-3">
@@ -123,8 +122,8 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
                     className={cn(
                       "px-6 py-3 rounded-xl border-2 font-semibold transition-all",
                       duration === mins 
-                        ? "border-primary bg-primary/5 text-primary shadow-sm" 
-                        : "border-border hover:border-primary/40 text-muted-foreground"
+                        ? "border-red-500 bg-red-500/10 text-red-500 shadow-sm" 
+                        : "border-[var(--surface-600)] text-[var(--text-secondary)] hover:border-red-500/50"
                     )}
                   >
                     {mins} min
@@ -132,19 +131,19 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
                 ))}
               </div>
 
-              <Button onClick={generateQR} className="w-full h-14 text-lg rounded-2xl" isLoading={isLoading}>
+              <Button onClick={generateQR} className="w-full h-14 text-lg rounded-xl bg-red-500 hover:bg-red-600" isLoading={isLoading}>
                 Generate Session QR
               </Button>
             </div>
           ) : (
-            <div className="flex flex-col items-center space-y-8 animate-in zoom-in-95 duration-300">
+            <div className="flex flex-col items-center space-y-8">
               <div className="text-center space-y-2">
-                <h2 className="text-3xl font-bold tracking-tight">{courseName}</h2>
-                <div className="flex items-center justify-center gap-2 text-muted-foreground">
-                  <Timer size={18} className={isExpired ? "text-destructive" : "text-primary"} />
+                <h2 className="text-3xl font-black text-[var(--text-primary)] tracking-tight">{courseName}</h2>
+                <div className="flex items-center justify-center gap-2 text-[var(--text-secondary)]">
+                  <Timer size={18} className={isExpired ? "text-red-500" : "text-red-500"} />
                   <span className={cn(
-                    "text-xl font-mono font-bold",
-                    isExpired ? "text-destructive" : "text-foreground"
+                    "text-xl font-mono font-black",
+                    isExpired ? "text-red-500" : "text-[var(--text-primary)]"
                   )}>
                     {isExpired ? "EXPIRED" : formatTime(timeLeft || 0)}
                   </span>
@@ -161,19 +160,11 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
                     size={280} 
                     level="H"
                     includeMargin={false}
-                    imageSettings={{
-                      src: "/favicon.ico",
-                      x: undefined,
-                      y: undefined,
-                      height: 40,
-                      width: 40,
-                      excavate: true,
-                    }}
                   />
                 </div>
                 {isExpired && (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-destructive text-white px-6 py-2 rounded-full font-bold shadow-lg flex items-center gap-2">
+                    <div className="bg-red-500 text-[var(--text-primary)] px-6 py-2 rounded-full font-bold shadow-lg flex items-center gap-2">
                       <AlertTriangle size={18} />
                       Session Expired
                     </div>
@@ -182,7 +173,7 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
               </div>
 
               <div className="w-full space-y-4">
-                <div className="flex items-start gap-3 p-4 bg-amber-50 dark:bg-amber-950/20 text-amber-800 dark:text-amber-300 rounded-2xl border border-amber-200 dark:border-amber-900/50">
+                <div className="flex items-start gap-3 p-4 bg-yellow-500/10 text-yellow-500 rounded-2xl border border-yellow-500/20">
                   <AlertTriangle className="shrink-0 mt-0.5" size={18} />
                   <p className="text-sm font-medium">
                     Do not close this modal or refresh the page — students are scanning. 
@@ -196,7 +187,7 @@ export function QRGeneratorModal({ courseId, courseName, onClose }: QRGeneratorM
                     Reset
                   </Button>
                   <Button 
-                    className="flex-1 h-12 rounded-xl" 
+                    className="flex-1 h-12 rounded-xl bg-red-500 hover:bg-red-600" 
                     onClick={() => {
                       if (isExpired || confirm("Are you sure? Active students may not finish scanning.")) {
                         onClose();

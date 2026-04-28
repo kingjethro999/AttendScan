@@ -38,7 +38,7 @@ export default async function StudentHomePage() {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-black text-white mb-1 tracking-tight">Welcome back, {userName}</h1>
+          <h1 className="text-3xl font-black text-[var(--text-primary)] mb-1 tracking-tight">Welcome back, {userName}</h1>
           <p className="text-[var(--text-secondary)] font-medium">Ready for your next lecture?</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 bg-red-500/10 border border-red-500/20 rounded-xl">
@@ -80,12 +80,12 @@ export default async function StudentHomePage() {
             <QrCode size={56} className="text-red-500" />
           </div>
           <div className="space-y-3 mb-8">
-            <h2 className="text-3xl font-black text-white tracking-tight">Ready to Scan?</h2>
+            <h2 className="text-3xl font-black text-[var(--text-primary)] tracking-tight">Ready to Scan?</h2>
             <p className="text-[var(--text-secondary)] max-w-md mx-auto">
               Point your camera at the QR code displayed by your lecturer to record your attendance instantly.
             </p>
           </div>
-          <a href="/student/scan" className="inline-flex items-center justify-center px-10 py-4 text-base font-bold bg-red-500 hover:bg-red-600 text-white rounded-xl transition-all hover:scale-105 shadow-lg shadow-red-500/20">
+          <a href="/student/scan" className="inline-flex items-center justify-center px-10 py-4 text-base font-bold bg-red-500 hover:bg-red-600 text-[var(--text-primary)] rounded-xl transition-all hover:scale-105 shadow-lg shadow-red-500/20">
             Open QR Scanner
           </a>
         </div>

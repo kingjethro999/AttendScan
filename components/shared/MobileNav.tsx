@@ -72,15 +72,15 @@ export default function MobileNav({ role, user }: MobileNavProps) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 28, stiffness: 300 }}
-            className="fixed bottom-16 left-0 right-0 z-50 bg-[var(--surface-800)] rounded-t-2xl shadow-2xl border-t border-[var(--surface-600)] px-4 pb-6 lg:hidden"
+            className="fixed bottom-16 left-0 right-0 z-50 bg-[var(--bg-card)] rounded-t-2xl shadow-2xl border-t border-[var(--border)] px-4 pb-6 lg:hidden"
           >
-            <div className="w-10 h-1 bg-[var(--surface-600)] rounded-full mx-auto mb-4" />
+            <div className="w-10 h-1 bg-[var(--border)] rounded-full mx-auto mb-4" />
             <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-bold text-white">More</p>
+              <p className="text-sm font-bold text-[var(--text-primary)]">More</p>
               <button
                 onClick={() => setMoreOpen(false)}
                 aria-label="Close menu"
-                className="w-7 h-7 flex items-center justify-center rounded-full bg-[var(--surface-700)]"
+                className="w-7 h-7 flex items-center justify-center rounded-full bg-[var(--border)]"
               >
                 <X size={16} className="text-[var(--text-muted)]" />
               </button>
@@ -94,21 +94,21 @@ export default function MobileNav({ role, user }: MobileNavProps) {
                     <div
                       className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-colors cursor-pointer ${
                         isActive
-                          ? "bg-red-500 text-white"
-                          : "text-[var(--text-secondary)] hover:bg-[var(--surface-700)]"
+                          ? "bg-red-500 text-[var(--text-primary)]"
+                          : "text-[var(--text-secondary)] hover:bg-[var(--border)]"
                       }`}
                     >
-                      <Icon size={20} className={isActive ? "text-white" : "text-[var(--text-muted)]"} />
+                      <Icon size={20} className={isActive ? "text-[var(--text-primary)]" : "text-[var(--text-muted)]"} />
                       <span className="text-sm font-medium">{label}</span>
                     </div>
                   </Link>
                 );
               })}
 
-              <div className="border-t border-[var(--surface-600)] mt-2 pt-2">
+              <div className="border-t border-[var(--border)] mt-2 pt-2">
                 <button
                   onClick={() => signOut()}
-                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition-colors cursor-pointer"
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-500/10 transition-colors cursor-pointer"
                 >
                   <LogOut size={20} />
                   <span className="text-sm font-medium">Logout</span>
@@ -120,7 +120,7 @@ export default function MobileNav({ role, user }: MobileNavProps) {
       </AnimatePresence>
 
       <nav
-        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--surface-800)] border-t border-[var(--surface-600)] px-2"
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[var(--bg-card)] border-t border-[var(--border)] px-2"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       >
         <div className="flex items-stretch justify-around py-1.5">

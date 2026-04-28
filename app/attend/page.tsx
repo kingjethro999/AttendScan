@@ -84,7 +84,7 @@ function AttendContent() {
               <QrCode size={48} />
             </div>
             <div className="space-y-2">
-              <h1 className="text-2xl font-bold text-white tracking-tight">Confirm Attendance</h1>
+              <h1 className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">Confirm Attendance</h1>
               <p className="text-[var(--text-secondary)]">
                 You are about to mark your attendance for a lecture session.
               </p>
@@ -103,12 +103,12 @@ function AttendContent() {
               {status_msg.success ? <CheckCircle size={48} /> : <XCircle size={48} />}
             </div>
             <div className="space-y-2">
-              <h2 className="text-2xl font-bold text-white">{status_msg.success ? "Success!" : "Failed"}</h2>
+              <h2 className="text-2xl font-bold text-[var(--text-primary)]">{status_msg.success ? "Success!" : "Failed"}</h2>
               <p className={`text-lg font-medium ${status_msg.success ? "text-green-500" : "text-red-500"}`}>
                 {status_msg.message}
               </p>
               {status_msg.courseName && (
-                <p className="font-bold text-xl mt-2 text-white">{status_msg.courseName}</p>
+                <p className="font-bold text-xl mt-2 text-[var(--text-primary)]">{status_msg.courseName}</p>
               )}
             </div>
             <Button asChild variant="outline" className="w-full rounded-xl">

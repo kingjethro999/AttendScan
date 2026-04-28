@@ -141,7 +141,7 @@ export default function LecturerHistoryPage() {
                 onClick={() => setSelectedCourseId(course.id)}
                 className={`px-4 py-3 rounded-xl text-sm font-semibold transition-all text-left ${
                   selectedCourseId === course.id
-                    ? "bg-primary text-white shadow-md shadow-primary/20"
+                    ? "bg-primary text-[var(--text-primary)] shadow-md shadow-primary/20"
                     : "bg-card hover:bg-secondary border border-border/50 text-muted-foreground"
                 }`}
               >
