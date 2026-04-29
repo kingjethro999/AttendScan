@@ -34,41 +34,45 @@ export function QRScanner({ onSuccess }: QRScannerProps) {
   const startScanner = async () => {
     if (scannerRef.current) return;
     
-    try {
-      const scanner = new Html5Qrcode("qr-reader", {
-        formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
-        verbose: false,
-      });
+    setShowScanner(true);
 
-      scannerRef.current = scanner;
+    // Wait briefly for React to render the qr-reader div to the DOM
+    setTimeout(async () => {
+      try {
+        const scanner = new Html5Qrcode("qr-reader", {
+          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+          verbose: false,
+        });
 
-      await scanner.start(
-        { facingMode: "environment" },
-        {
-          fps: 10,
-          qrbox: { width: 250, height: 250 },
-        },
-        async (decodedText) => {
-          try {
-            const url = new URL(decodedText);
-            const token = url.searchParams.get("token");
-            if (token) {
-              await submitAttendance(token);
-            } else {
-              toast.error("Invalid QR code format");
+        scannerRef.current = scanner;
+
+        await scanner.start(
+          { facingMode: "environment" },
+          {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
+          },
+          async (decodedText) => {
+            try {
+              const url = new URL(decodedText);
+              const token = url.searchParams.get("token");
+              if (token) {
+                await submitAttendance(token);
+              } else {
+                toast.error("Invalid QR code format");
+              }
+            } catch (e) {
+              logger.error("Scan processing error", e);
             }
-          } catch (e) {
-            logger.error("Scan processing error", e);
-          }
-        },
-        () => {}
-      );
-      
-      setShowScanner(true);
-    } catch (error) {
-      logger.error("Failed to start scanner", error);
-      toast.error("Could not access camera");
-    }
+          },
+          () => {}
+        );
+      } catch (error) {
+        logger.error("Failed to start scanner", error);
+        toast.error("Could not access camera");
+        setShowScanner(false);
+      }
+    }, 100);
   };
 
   const stopScanner = async () => {
